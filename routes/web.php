@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\History_tranfersController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\Type_ProductController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +23,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('gethistory-tranfers',[History_tranfersController::Class,'GetHistoryfunction']);
+Route::get('getprofile',[ProfileController::Class,'Getprofile']);
+Route::get('getrole',[RoleController::Class,'Getrole']);
+Route::get('type_product',[Type_ProductController::Class,'Gettype_product']);
+
+

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class Role extends Controller
+use App\Models\Role;
+class RoleController extends Controller
 {
     public function Getrole() {
-        $roles = role::all()->get();
+        $roles = Role::all()->toArray();
         return $roles;
         }
 }

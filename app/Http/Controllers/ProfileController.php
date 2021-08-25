@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class Profile extends Controller
+use App\Models\Profile;
+class ProfileController extends Controller
 {
     public function Getprofile() {
-    $Profiles = profile::all()->get();
+    $Profiles = Profile::all()->toArray();
     return $Profiles;
     }
 }

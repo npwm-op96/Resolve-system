@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class History_tranfers extends Model
 {
     use HasFactory;
+    protected $table ="history_tranfers";
 }

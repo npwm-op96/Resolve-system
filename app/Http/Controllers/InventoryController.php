@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers;;
 use Illuminate\Http\Request;
 use App\Models\Inventory;
 class InventoryController extends Controller
@@ -13,7 +12,9 @@ class InventoryController extends Controller
      */
     public function index()
     {
+        $Inventory = Inventory::all();
         
+        return view('index',compact('Inventory'));
     }
 
     /**
@@ -29,7 +30,7 @@ class InventoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource  in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -47,9 +48,9 @@ class InventoryController extends Controller
 
         ]);
         print_r($request->all());
-        /*$show = Inventory::create($validatedData);*/
+        $show = Inventory::create($validatedData);
    
-        return redirect('/inventory')->with('success', 'Inventory is successfully saved');
+        // return redirect('/inventory')->with('success', 'Inventory is successfully saved');
     }
 
     /**
@@ -69,9 +70,11 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_inv)
     {
-        //
+        $edit = Inventory::findOrFail($id_inv);
+
+        return view('edit', compact('edit'));
     }
 
     /**
@@ -81,9 +84,20 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_inv)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'id_type'=> 'required',
+            'buy_date'=>'required',
+            'price' => 'required',
+            'waranty' => 'required',
+            's/n' => 'required',
+            'model' => 'required',
+        ]);
+        Inventory::where('id_inv',$id_inv)->update($validatedData);
+
+        return redirect('/inventory')->with('success', 'Game Data is successfully updated');
     }
 
     /**

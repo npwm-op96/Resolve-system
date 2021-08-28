@@ -97,7 +97,7 @@ class InventoryController extends Controller
         ]);
         Inventory::where('id_inv',$id_inv)->update($validatedData);
 
-        return redirect('/inventory')->with('success', 'Game Data is successfully updated');
+        return redirect('/inventory')->with('success', 'update Data is successfully updated');
     }
 
     /**
@@ -106,8 +106,11 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_inv)
     {
-        //
+        $Inv = Inventory::findOrFail($id_inv);
+        $Inv->delete();
+
+        return redirect('/inventory')->with('success', 'delete Data is successfully deleted');
     }
 }
